@@ -1,0 +1,66 @@
+<prog>=(claim define?)*
+
+claim=<'('><'claim'> name ex<')'>
+define=<'('><'define'> name ex<')'>
+
+<ex> = constructor / apply / simpleex
+<simpleex> = (atom|Nat|atomLit|zero|natLit|nil|vecnil|trivial|sole|absurd|U) / ref
+<constructor>=<'('> (the|pair|list|the|sig|cons|car|cdr|ftype|add1|whichNat|iterNat|recNat|indNat|Vec|veccons|head|tail|indVec|eq|same|symm|cong|replace|trans|indeq|either|left|right|indEither|indAbsurd|recList|indList|lam|Pi) <')'>
+
+whichNat=<'which-Nat'> ex ex ex 
+recNat=<'rec-Nat'> ex ex ex 
+iterNat=<'iter-Nat'> ex ex ex 
+indNat=<'ind-Nat'> ex ex ex ex 
+zero=<"zero">
+add1=<'add1'> ex
+natLit = #"\d+"
+
+recList=<'rec-List'> ex ex ex 
+indList=<'ind-List'> ex ex ex ex 
+nil=<"nil">
+vecnil=<"vecnil">
+cons=<"::"> ex ex
+Vec=<"Vec"> ex ex
+veccons=<"vec::"> ex ex
+head=<"head"> ex
+tail=<"tail"> ex
+indVec=<"ind-Vec"> ex ex ex ex ex
+eq=<"="> ex ex ex
+same=<"same"> ex
+symm=<"symm"> ex
+cong=<"cong"> ex ex
+replace=<"replace"> ex ex ex
+trans=<"trans"> ex ex
+indeq=<"ind-="> ex ex ex
+either=<"Either"> ex ex
+left=<"left"> ex
+right=<"right"> ex
+indEither=<"ind-Either"> ex ex ex ex
+trivial=<"Trivial">
+sole=<"sole">
+absurd=<"Absurd">
+indAbsurd=<"ind-Absurd"> ex ex
+U=<"U">
+
+the = <'the'> ex ex
+pair = <'Pair'> ex ex 
+list = <'List'> ex 
+Nat = <'Nat'>
+atom = <'Atom'>
+atomLit = <"'">name
+sig=<'Sig'> LP piArgs RP ex 
+cons=<'cons'> ex ex 
+car=<'car'> ex 
+cdr=<'cdr'> ex 
+ftype=<'->'> ex ex+ 
+Pi=<'Pi'> <'('> piArgs <')'>  ex
+lam=<'lam'> args ex
+args=<'('> name+ <')'>
+piArg = LP name ex RP
+piArgs=piArg+
+<name>=#"\w+"
+apply=<'('> ex+ <')'>
+ref= name
+
+<LP>=<'('>
+<RP>=<')'>
